@@ -1,0 +1,403 @@
+
+main{
+	background-color: #fff;
+	@include border-radius;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+
+}
+
+@mixin slicknav{
+
+	.material-icons{
+		font-size: 2.6rem;
+		@include responsivemd{
+			font-size: 2rem;
+		}
+	}
+	.slick-arrow{
+		background-color: $white;
+		z-index: 9;
+		height: 80px;
+		width: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $red;
+		transition: .3s ease;
+		overflow: hidden !important;
+		@include responsivemd{
+			height: 40px;
+			width: 40px;
+		}
+		@include responsivesm{
+			display: none !important;	
+		}
+		&:before{
+			content: none;
+		}
+		&.hidden{
+			opacity: 0;
+			pointer-events: none;
+			@include transition-in;
+		}
+	}
+	.slick-next{
+		right:0em;
+		border-radius: 1em 0 0 1em;
+	}
+	.slick-prev{
+		left:0;
+		border-radius: 0 1em 1em 0; 
+	}
+}
+
+
+@mixin active{
+	&.active{
+		color:#fff ;
+		background-color: $secondary-color;
+		@include transition-in;
+
+	}
+}
+
+@mixin arrow{
+	outline: none !important;
+	background-color: transparent;
+	color:#fff;
+	height: 50px;
+	width: 50px;
+	@include box-shadow;
+	border:0;
+	border-radius: 5px;
+	span{
+		font-size: 20px;
+		margin: 0;
+	}
+	
+}
+.card__margin{
+	@include card__margin;
+}
+.item{
+	cursor:move ;
+}
+.section__title{
+	font-size: 2.4rem;
+	font-weight: 600;
+	line-height: 1.5;
+	&.white{
+		color: #fff;
+	}
+	@include responsivesm{
+		font-size: 20px;
+	}
+
+}
+
+
+
+@mixin card{
+	.card, .card__horizontal{
+		border:0;
+		box-shadow: 0;
+		font-size: 16px;
+		background-color: transparent;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		img{
+			@include image;
+			object-fit: contain;
+		}
+		.card__img{
+			height: 150px;
+			overflow: hidden;
+		}
+		.card__svg{
+			transform: rotate(45deg);
+			svg{
+				height: 60px;
+				width: auto;
+				object-fit: contain;
+				fill:$primary-color;
+			}
+		}
+		.card__title{
+			font-size: 16px;
+			margin: 0;
+			margin-top: 6px;
+			margin-bottom: 4px;
+			color: #fff;
+
+		}
+		.card__body{
+			padding: 1.3em 1em;
+			padding-top: 6px;
+		}
+		.small__title{
+			color:$para;
+			font-size: 1em;
+		}
+		.price{
+			color:#fff;
+		}
+		button{
+			@include button;
+		}
+		.cart{
+			position: absolute;
+			top:1em;
+			right: 0em;
+			height: 45px;
+			width: 45px;
+			text-align: center;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			@include box-shadow;
+			svg{
+				height: 24px;
+				width: auto;
+				fill:$dark;
+				@include transition-out;
+			}
+			&:active{
+				svg{
+					transform: scale(2);
+					@include transition-in;
+				}
+			}
+			&.active{
+				background-color: $secondary-color;
+				svg{
+					fill:#fff;
+				}
+			}
+		}
+		
+	}
+	.bg{
+		position: relative;
+		&:before{
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 70%;
+			background-color: rgba($primary-color, .73);
+			@include border-radius;
+			z-index: -1;
+			// clip-path: polygon(6% 0%, 100% 30%, 100% 100%, 0 100%, 0 0);
+
+		}
+
+
+	}
+}
+
+@mixin card__hr{
+	.card__hr{
+		flex-direction: row;
+		.bg::before {
+			height: 55%;
+			border-radius: 10px;
+			opacity: .3;
+		}
+		.card__img{
+			height: 70px;
+			overflow: hidden;
+			width: 70px;
+			padding-bottom: 6px;
+		}
+		.card__body{
+			flex-grow: 2;
+			text-align: left;
+			display: flex;
+			padding: 0;
+			padding-left: 0px;
+			padding-left: 1em;
+			justify-content: space-between;
+			.small__title{
+				font-size: 14px;
+			}
+			.price{
+				color: $dark;
+				font-size: 1.2em;
+			}
+		}
+		.qty {
+			.form-group{
+				flex-direction: column;
+				padding: 0;
+			}
+			button{
+				padding: 0 10px !important;
+			}
+			button, input{
+				font-size: 1em !important ;
+			}
+		}
+		@include btn-label;
+
+	}
+}
+
+
+
+@mixin article($number){
+	article:first-child{
+		padding-left: 0;
+	}
+	article:last-child{
+		padding-right: 0;
+	}
+	@if $number == 2{
+		article{
+			padding-left: 6px;
+			padding-right: 6px;
+		}
+	}
+	@if $number == 3{
+		article{
+			&:nth-child(3n+1){
+				padding-left: 0;
+				@include responsivemd{
+					padding-left: 15px;
+				}
+
+			}
+			&:nth-child(3n){
+				padding-right: 0;
+				@include responsivemd{
+					padding-right: 15px;
+				}
+
+			}
+			&:nth-child(2n+1){
+				@include responsivemd{
+					padding-left: 0;
+				}
+
+			}
+			&:nth-child(2n){
+				@include responsivemd{
+					padding-right: 0px;
+				}
+
+			}
+		}
+	}
+}
+.price {
+	color:$primary-color;
+	font-weight: 600;
+}
+.title__wrapper{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	.section__title{
+		margin-bottom: 0 !important;
+	}
+	
+}
+
+
+
+.para{
+	@include responsivesm{
+		font-size: 16px;	
+	}
+}
+
+.qty{
+	width: auto;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 14px;
+	.form-group{
+		color: $dark;
+		display: flex;
+		margin-bottom: 0;
+		background-color: #fff;
+		justify-content: center;
+		align-items: center;
+		padding: 4px;
+		border-radius: 10px;
+	}
+	.form-control{
+		padding: 0 !important;
+		text-align: center;
+		border: 0 ;
+		box-shadow: none !important;
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 38px;
+		background-color: transparent;
+		height: 40px;
+		width: 40px;
+
+	}
+	button{
+		background-color: transparent !important;
+		color: $para !important;
+		box-shadow: none !important;
+		padding: 10px !important;
+		font-size: 24px !important;
+		&:hover{
+			color: $primary-color !important;
+
+		}
+
+	}
+}
+
+@mixin btn-label{
+
+	button.label{
+		@include button;
+		font-size: 12px !important;
+		padding: 6px 12px !important;
+		background-color: #f9f9f9;
+		// float: right;
+		box-shadow: none !important;
+		color: $para;
+		&:hover{
+			background-color: #f9f9f9;
+		}
+		&.active{
+			color: #fff;
+			background-color:$secondary-color;
+		}
+	}
+}
+
+
+@mixin item{
+	padding:0 6px;
+	article{
+		padding:0px 6px;
+		// .card.bg::before{
+		// 	clip-path: polygon(6% 0%, 100% 30%, 100% 100%, 0 100%, 0 0);
+		// 	height: 53%;
+		// 	clip-path: none;
+		// }
+		// &:first-child{
+		// 	.card.bg:before{
+		// 		clip-path: polygon(6% 0%, 100% 30%, 100% 100%, 0 100%, 0 0);
+		// 		height: 75%;
+		// 	}
+		// }
+		// &:last-child{
+		// 	.card.bg:before{
+		// 		clip-path: polygon(0% 30%, 100% 0%, 100% 100%, 0 100%, 0 0);
+		// 		height: 75%;
+		// 	}
+		// }
+	}
+}

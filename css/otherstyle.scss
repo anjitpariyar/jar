@@ -1,0 +1,284 @@
+@import './component_css/header';
+@import './component_css/footer';
+.common-page{
+	min-height: 370px;
+	.card.gas{
+		.bg::before {
+			background-color: rgba($secondary-color,0.73);
+		}
+	}
+	& + .vr__footer{
+		background-color:#fff;
+		display: flex;
+		justify-content: space-between;
+		align-items:center;
+		z-index: 9;
+		padding:1em;
+		@include box-shadow;
+		border-radius:8px;
+		width: 90%;
+		margin: 10px auto;
+		position:sticky;
+		bottom:20px;
+		.section__title{
+			margin: 0;
+			color: $secondary-color;
+			line-height: 1;
+			small{
+				font-size: 0.6em;
+				color: $para;
+			}
+		}
+		button{
+			@include button;
+			flex-grow: 2;
+			margin-left: 2em;
+			@include active;
+		}
+		& + footer{
+			display: none;
+		}
+	}
+	.section__title.white {
+		margin-top: -70px;
+		margin-bottom: 40px;
+	}
+	button{
+		@include active;
+	}
+}
+
+.account__page{
+	.profile{
+		border:0;
+		text-align: center;
+		box-shadow: 0;
+		background-color: transparent;
+		padding: 0;
+		align-items: center;
+		margin-top: -80px;
+		img{
+			@include image;
+		}
+		.card__img{
+			@include border-radius;
+			border:6px solid #fff;
+			overflow: hidden;
+			height: 120px;
+			width: 120px;
+			margin-bottom: 10px;
+		}
+		h2{
+			margin-bottom: 6px;
+		}
+		.card__title{
+			font-size: 18px;
+		}
+		.small__title{
+			color:$para;
+			font-size: 16px;
+			max-width: 170px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	}
+	.tabs{
+		@include card;
+		@include article(2);
+		.card{
+			.card__body{
+				padding-bottom: 4px;
+			}
+		}
+		.bg::before{
+			border-radius: 10px;
+			height: 82%;
+			clip-path: unset;
+		}
+		article:nth-child(2){
+			.bg::before{
+				background-color: rgba($secondary-color, 0.73);
+			}
+			.card__svg svg{
+				fill:$secondary-color;
+			}
+		}
+
+		button{
+			@include button;
+			width: 100%;
+			font-size: 18px !important;
+			padding: 18px !important;
+		}	
+	}
+}
+
+.cart__page{
+
+	@include card;
+	@include card__hr;
+	.card{
+		@include card__margin;
+		.price{
+			display: inline;
+			margin-right: 3px;
+		}
+		border-bottom: 1px solid #f2f2f2;
+		border-radius: 0;
+		&:last-child{
+			border-bottom:0;
+			margin-bottom: 0;
+		}
+	}
+
+}
+.single-page{
+	@include card;
+	@include btn-label;
+	.card{
+		.card__img{
+			height: 175px;
+		}
+		.card__body{
+			background-color: $primary-color;
+			color: $white;
+			text-align: left;
+			@include border-radius;
+			margin: 1em 0;
+			font-weight: 400;
+			padding: 1.3em 2em;
+		}
+		.qty{
+			margin-top: -1.3em;
+			.form-group{
+				border-radius: 0 0 20px 20px;
+			}
+		}
+		.text__wrapper{
+			align-items:center;
+			justify-content: space-between;
+			margin: 1.3em 0;
+
+			.price{
+				margin-bottom: 0;
+			}
+		}
+		.table{
+			color: $white;
+			th{
+				font-weight: 400;
+				opacity: .7;
+			}
+			th, td{
+				padding: 8px 0;
+			}
+		}
+	}
+}
+
+.notification{
+	.card__title{
+		font-size: 1em;
+		margin-bottom: 0;
+	}
+	.list-group-item{
+		padding: 0.75em 2em;
+		border:none;
+		border-top:1px solid #f2f2f2;
+		&.unseen{
+			background-color: #f9f9f9;
+		}
+	}
+}
+
+.checkout-page{
+	@include card;
+	@include card__hr;
+	.card__hr{
+		.card__body{
+			.price, .qu{
+				font-size: 1em;
+				margin-bottom: 0;
+				opacity: 0.4;
+			}
+		}
+	} 
+	.card__wrapper {
+		@include scrollbar;
+		display: grid;
+		grid-template-columns: repeat( 10, max-content);
+		grid-gap: 1.5rem;
+		width: 100%;
+		overflow-x: scroll;
+		grid-auto-flow: column;
+	} 
+	.text__wrapper{
+		@include ul;
+		font-weight: 400;
+		.section__title{
+			font-size: 16px;
+		}
+		.small__title{
+			color: $para;
+			font-size: 14px;
+			margin-bottom: 0;
+			line-height: 2;
+		}
+		a.small__title{
+			text-decoration: underline;
+			color: $dark;
+		}
+		.form-check {
+			border: 1px solid #ddd;
+			padding: 12px 2.2em;
+			border-radius: 6px;
+			margin: 8px 0;
+			display: flex;
+			align-items: center;
+			@include transition-in;
+			&.active {
+				border-color: $primary-color;
+				background-color: $primary-color;
+				@include transition-out;
+				.form-check-label, span {
+					color: $white;
+				}
+
+			}
+			.form-check-label {
+				margin-bottom: 0;
+				display: flex;
+				align-items: center;
+				width: 100%;
+				color: $para;
+				font-size: 14px;
+			}
+			span, img {
+				margin-left: auto;
+
+			}
+			img {
+				width: auto;
+				height: 25px;
+				background-color:#fff;
+			}
+		}
+	}
+
+}
+
+.thankyou{
+	border-radius:0;
+	text-align: center;
+	font-weight: 400;
+	button{
+		@include button;
+	}
+	.para{
+		a{
+			color: $secondary-color;
+			text-decoration: underline;
+		}
+	}
+}

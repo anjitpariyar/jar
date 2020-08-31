@@ -1,0 +1,42 @@
+@import './component_css/header';
+
+
+.jar{
+	@include card;
+	.section__title{
+		padding:0 20px;
+	}
+	.section-rule{
+		width: 100%;
+	}
+	.slick-list{
+		@include item;
+	}
+	.card{
+		.card__img{
+			a:first-child{
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+	
+}
+
+.cylinder{
+	@extend .jar;
+	.bg::before{
+		background-color: rgba($blue,0.73);
+	}
+	.card{
+		button{
+			background-color: $blue;
+		}
+	}
+}
+
+
+
+
+@import './component_css/footer';
+
